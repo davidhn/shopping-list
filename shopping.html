@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html ng-app="shoppingListApp">
+<head>
+	<title>Grocery Buddy</title>
+	<link type="text/css" rel="stylesheet" href="shopping.css"/>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.20/angular.min.js"></script>
+	<script type="text/javascript" src="shopping.js"></script>
+	<link href='http://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+</head> 
+<body>
+	<header>
+		<h1>Grocery Buddy</h1>
+	</header>
+
+	<div id="container">
+		<div id="inside" ng-controller="shopCtrl">
+		<h3> So user-friendly...even a caveman can use it </h3>
+			<form ng-submit="addNewItem();">
+				<input type="text" size="25" placeholder=" What item do you need?" ng-model="newItemName">
+				<input type="text" size="10" placeholder=" How many?" ng-model="newItemQuantity">
+				<input type="text" size="25" placeholder=" Add requested item image URL" ng-model="newItemImage"><br/>
+				<input id="button" type="submit" value="Add item to cart">
+				<a href="" ng-click="boughtItem();">
+				<button id="button2"> Click Here to Remove Selected Item(s)</button>
+			 	</a>
+			</form>
+			<hr>
+			<span style="color:red">
+			 	{{ remainingItems() }}  items still needed 
+			 </span><br/>
+
+			<div id="ul">
+			<ul>
+				<li ng-repeat="item in list">
+					<input type="checkbox" ng-model="item.bought">
+					<span ng-class="true: 'bought-true', false: ''}[item.bought]"> {{item.item}} - {{item.quantity}} needed</span><br/>
+					<img ng-src="{{ item.image }}">
+				</li>
+			</ul>
+			</div>
+
+		</div>
+	</div>
+
+	<footer>
+		<ul>
+			<li><a href="#">Blog</a></li>
+			<li><a href="#">About Us</a></li>
+			<li><a href="#">Contact</a></li>
+			<li><a href="#">Media</a></li>
+			<li><a href="#">We're Hiring</a></li>
+		</ul>
+	</footer>
+
+</body>
+</html>
